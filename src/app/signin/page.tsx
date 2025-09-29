@@ -1,24 +1,9 @@
 "use client";
 
-import * as z from "zod";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-
-const SignInSchema = z.object({
-  email: z
-    .string()
-    .email("Please enter a valid email address")
-    .min(1, "Email is required"),
-  password: z
-    .string()
-    .min(8, "Password must be at least 8 characters")
-    .regex(
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/,
-      "Password must contain at least one uppercase letter, one lowercase letter, and one number"
-    ),
-});
-
-export type SignInType = z.infer<typeof SignInSchema>;
+import { SignInSchema, SignInType } from "@/types";
+import { readUser } from "@/actions/firebaseActions";
 
 const fields = [
   {
@@ -35,6 +20,12 @@ const fields = [
 
 const onSubmit: SubmitHandler<SignInType> = async (data) => {
   console.log(data);
+  try {
+    const user = await readUser(data.email, data.password);
+    console.log(user);
+  } catch (e) {
+    console.log(e);
+  }
 };
 
 const Home = () => {
