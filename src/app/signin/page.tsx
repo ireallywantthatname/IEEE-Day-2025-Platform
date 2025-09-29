@@ -4,6 +4,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SignInSchema, SignInType } from "@/types";
 import { readUser } from "@/actions/firebaseActions";
+import { useRouter } from "next/navigation";
 
 const fields = [
   {
@@ -18,17 +19,9 @@ const fields = [
   },
 ];
 
-const onSubmit: SubmitHandler<SignInType> = async (data) => {
-  console.log(data);
-  try {
-    const user = await readUser(data.email, data.password);
-    console.log(user);
-  } catch (e) {
-    console.log(e);
-  }
-};
-
 const Home = () => {
+  const router = useRouter();
+
   const {
     register,
     handleSubmit,
@@ -41,6 +34,18 @@ const Home = () => {
       password: "",
     },
   });
+
+  const onSubmit: SubmitHandler<SignInType> = async (data) => {
+    console.log(data);
+    try {
+      const user = await readUser(data.email, data.password);
+      console.log(user);
+      localStorage.setItem("userData", JSON.stringify(user));
+    } catch (e) {
+      console.log(e);
+    }
+    router.push("/passport");
+  };
 
   return (
     <div className="flex flex-col items-center justify-center h-screen">
