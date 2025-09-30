@@ -1,1 +1,15 @@
 @import "tailwindcss";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+    .font-primary {
+        font-family: var(--font-audiowide);
+    }
+
+    .font-secondary {
+        font-family: var(--font-outfit);
+    }
+}
