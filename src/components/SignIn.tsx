@@ -5,7 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { SignInSchema, SignInType } from "@/types";
 import { readUser } from "@/actions/firebaseActions";
 import { useRouter } from "next/navigation";
-import { Audiowide } from 'next/font/google';
+
 
 import { useRef, useEffect } from "react";
 import Image from "next/image";
@@ -14,7 +14,6 @@ import IeeeDayLogoInner from "../../public/logos/ieee-day-logo-inner.svg";
 import IeeeDayLogoOuter from "../../public/logos/ieee-day-logo-outer.svg";
 import BackgroundImage from "../../public/background.jpg";
 
-const audiowide = Audiowide({ subsets: ['latin'], weight: '400' });
 
 const fields = [
     {
@@ -76,7 +75,7 @@ const Home = () => {
 
     return (
         //<div className="flex flex-col items-center justify-center h-screen px-4 ${audiowide.className} ">
-        <div className={`flex flex-col items-center justify-center h-screen px-4 bg-[url('/background.jpg')] bg-cover bg-center ${audiowide.className}`}>
+        <div className={`flex flex-col items-center justify-center h-screen px-4 bg-[url('/background.jpg')] bg-cover bg-center`}>
             <div className=" rounded-lg shadow-lg flex flex-col md:flex-row items-center md:items-stretch w-full max-w-3xl">
                 <div className="flex items-center justify-center bg-black/10 p-8 md:w-1/2">
                     <div className="relative w-80 h-80 flex items-center justify-center" >
@@ -90,8 +89,8 @@ const Home = () => {
                         />
                         <Image
                             src={IeeeDayLogoInner}
-                            width={170}
-                            height={170}
+                            width={163}
+                            height={163}
                             alt="IEEE Day Logo Inner"
                             className="absolute"
                         />
