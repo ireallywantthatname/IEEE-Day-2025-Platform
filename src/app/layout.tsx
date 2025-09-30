@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
-import { Fira_Code } from "next/font/google";
+import { Audiowide } from 'next/font/google';
 import "./globals.css";
+import BackgroundImage from "../../public/background.jpg";
 
-const fira_code = Fira_Code({
-  subsets: ["latin"],
-});
+const audiowide = Audiowide({ subsets: ['latin'], weight: '400' });
+
+
+
+;
 
 export const metadata: Metadata = {
   title: "IEEE Day Platform - 2025",
@@ -19,7 +22,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${fira_code.className} antialiased select-none bg-black text-white text-base 2xl:text-xl`}
+        className={`${audiowide.className} antialiased select-none text-white text-base 2xl:text-xl bg-[url('/background.jpg')] bg-cover bg-center`}
       >
         {children}
       </body>
