@@ -5,14 +5,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { SignInSchema, SignInType } from "@/types";
 import { readUser } from "@/actions/firebaseActions";
 import { useRouter } from "next/navigation";
-
-
 import { useRef, useEffect } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import IeeeDayLogoInner from "../../public/logos/ieee-day-logo-inner.svg";
 import IeeeDayLogoOuter from "../../public/logos/ieee-day-logo-outer.svg";
-import BackgroundImage from "../../public/background.jpg";
 
 
 const fields = [
@@ -74,39 +71,33 @@ const Home = () => {
 
 
     return (
-        //<div className="flex flex-col items-center justify-center h-screen px-4 ${audiowide.className} ">
-        <div className={`flex flex-col items-center justify-center h-screen px-4 bg-[url('/background.jpg')] bg-cover bg-center`}>
-            <div className=" rounded-lg shadow-lg flex flex-col md:flex-row items-center md:items-stretch w-full max-w-3xl">
-                <div className="flex items-center justify-center bg-black/10 p-8 md:w-1/2">
+        <div className="relative z-50 flex items-center justify-center h-screen">
+            <div className="flex flex-col md:flex-row items-center md:items-stretch w-full max-w-3xl">
+                <div className="flex items-center justify-center p-8 md:w-1/2">
                     <div className="relative w-80 h-80 flex items-center justify-center" >
                         <Image
                             ref={outerLogoRef}
                             src={IeeeDayLogoOuter}
-                            width={305}
-                            height={305}
+                            width={400}
+                            height={400}
                             alt="IEEE Day Logo Outer"
                             className="absolute"
                         />
                         <Image
                             src={IeeeDayLogoInner}
-                            width={163}
-                            height={163}
+                            width={200}
+                            height={200}
                             alt="IEEE Day Logo Inner"
                             className="absolute"
-                        />
-                        <Image
-                            src={BackgroundImage}
-                            alt="Background"
-                            className="absolute -z-10 w-full h-full"
                         />
                     </div>
                 </div>
 
 
                 <div className="p-8 md:w-1/2" >
-                    <h2 className="text-center text-xl font-bold mb-6">Sign In</h2>
+                    <h2 className="font-primary text-center text-xl font-bold mb-6">Sign In</h2>
 
-                    <form onSubmit={handleSubmit(onSubmit)}>
+                    <form onSubmit={handleSubmit(onSubmit)} className="font-secondary">
                         {fields.map((field, index) => (
                             <div key={index} className="h-28">
                                 <div className="font-bold">{field.label}</div>

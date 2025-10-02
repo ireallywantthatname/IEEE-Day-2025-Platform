@@ -1,16 +1,11 @@
 import type { Metadata } from "next";
-import { Audiowide, Outfit } from 'next/font/google';
+import { Saira } from 'next/font/google';
 import "./globals.css";
+import ParticlesBg from "@/components/ParticlesBg";
 
-const audiowide = Audiowide({
+const saira = Saira({
   subsets: ['latin'],
   weight: '400',
-  variable: '--font-audiowide'
-});
-
-const outfit = Outfit({
-  subsets: ['latin'],
-  variable: '--font-outfit'
 });
 
 export const metadata: Metadata = {
@@ -26,8 +21,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${audiowide.variable} ${outfit.variable} font-secondary antialiased select-none text-white text-base 2xl:text-xl bg-[url('/background.jpg')] bg-cover bg-center`}
+        className={`${saira.className} font-secondary antialiased select-none bg-black text-white text-base 2xl:text-xl`}
       >
+        <ParticlesBg />
         {children}
       </body>
     </html>

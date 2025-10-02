@@ -17,15 +17,21 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen gap-8">
-      <div className="font-bold">{userData?.full_name}</div>
-      <div className="animate-bounce">{userData?.email}</div>
-      {userData?.gender == "Female" && (<Image src={GirlAvatar} alt="" height={200} width={200} />)}
-      {userData?.gender == "Male" && (<Image src={BoyAvatar} alt="" height={200} width={200} />)}
-      {userData?.nic && (<div>{2025 - parseInt(userData.nic.slice(0, 4))}</div>)}
-      <div>{userData?.phone_number}</div>
-      <div>{userData?.preferred_track_session_1}</div>
-      <div>{userData?.university_name}</div>
+    <div className="flex flex-col md:flex-row h-screen">
+      <div className="flex flex-col items-center justify-center h-full gap-8 w-full bg-black/5 backdrop-blur-lg">
+        <div className="font-bold">Hi, I am {userData?.full_name}</div>
+        <div>{userData?.email}</div>
+        {userData?.gender == "Female" && (<Image src={GirlAvatar} alt="" height={200} width={200} />)}
+        {userData?.gender == "Male" && (<Image src={BoyAvatar} alt="" height={200} width={200} />)}
+        {userData?.nic && (<div>{2025 - parseInt(userData.nic.slice(0, 4))}</div>)}
+        <div>{userData?.phone_number}</div>
+        <div>{userData?.preferred_track_session_1}</div>
+        <div>{userData?.university_name}</div>
+      </div>
+      <div className="flex flex-col items-center justify-center h-full gap-8 w-full bg-black/5 backdrop-blur-lg">
+        <div>Pre Event Quiz</div>
+        <div>{userData?.preferred_track_session_1} Quiz</div>
+      </div>
     </div>
   );
 };
