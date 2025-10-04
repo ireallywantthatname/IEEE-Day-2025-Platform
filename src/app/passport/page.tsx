@@ -17,6 +17,7 @@ import Futurebadge from "../../../public/badges/future.png"
 import Bind from "../../../public/bind.png"
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
+import Countdown from "@/components/Countdown";
 
 
 const chapterLogos = [IeeeSbLogo, IeeeCsLogo, IeeeWieLogo];
@@ -140,15 +141,15 @@ const Home = () => {
             <div className="absolute bottom-4 grid grid-cols-3 items-center justify-center w-full text-sm md:text-base">
               <div className="border-2 border-white/15 text-center h-24 flex flex-col items-center justify-center">
                 <button className="bg-white text-black px-4 py-2 hover:scale-95 transition-transform duration-300">Pre-event Quiz</button>
-                <div className="mt-1">NSBM Green University</div>
+                <Countdown date={"2025-10-06T20:00:00Z"} />
               </div>
               <div className="border-2 border-white/15 text-center h-24 flex flex-col items-center justify-center">
-                <button className="bg-white text-black px-4 py-2 hover:scale-95 transition-transform duration-300">Pre-event Quiz</button>
-                <div className="mt-1">7th October</div>
+                <button className="bg-white text-black px-4 py-2 hover:scale-95 transition-transform duration-300">In-event Quiz</button>
+                <Countdown date={"2025-10-07T13:00:00Z"} />
               </div>
               <div className="border-2 border-white/15 text-center h-24 flex flex-col items-center justify-center">
-                <button className="bg-white text-black px-4 py-2 hover:scale-95 transition-transform duration-300">Pre-event Quiz</button>
-                <div className="mt-1">9:30 AM</div>
+                <button className="bg-white text-black px-4 py-2 hover:scale-95 transition-transform duration-300">Post-event Quiz</button>
+                <Countdown date={"2025-10-07T16:30:00Z"} />
               </div>
             </div>
           </div>
