@@ -14,6 +14,7 @@ import IeeeWieLogo from "../../../public/logos/ieee-nsbm-wie-logo.png"
 import PastBadge from "../../../public/badges/past.png"
 import PresendBadge from "../../../public/badges/present.png"
 import Futurebadge from "../../../public/badges/future.png"
+import Bind from "../../../public/bind.png"
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 
@@ -72,15 +73,15 @@ const Home = () => {
   else {
     return (
       <div className="relative z-50 flex flex-col md:flex-row">
-        <div className="w-[100%] md:w-[50%] h-160 md:h-screen flex items-center justify-center">
+        <div className="md:absolute md:left-16 w-[100%] md:w-[50%] h-160 md:h-screen flex items-center justify-center">
 
           <div className="relative flex flex-col bg-white/5 backdrop-blur-lg size-[95%] md:size-[80%]">
             <div className="absolute inset-x-0 top-4 md:top-10 text-center">
               <div className="text-2xl md:text-4xl">Time Traveler&apos;s</div>
-              <div className="text-5xl md:text-7xl font-bold">Passport</div>
+              <div className="text-4xl md:text-6xl font-bold">Passport</div>
             </div>
-            <Image src={IeeeDayLogoOuter} ref={outerLogoRef} alt="" width={400} height={400} className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 scale-75 md:scale-[85%] 2xl:scale-100" />
-            <Image src={IeeeDayLogoInner} alt="" width={200} height={200} className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 scale-[70%] md:scale-90 2xl:scale-100" />
+            <Image src={IeeeDayLogoOuter} ref={outerLogoRef} alt="" width={400} height={400} className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 scale-75 md:scale-[85%] 2xl:scale-90" />
+            <Image src={IeeeDayLogoInner} alt="" width={200} height={200} className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 scale-[70%] md:scale-90 2xl:scale-90" />
             <div className="hidden absolute inset-x-0 bottom-0 md:grid md:grid-cols-3 items-center md:mx-10">
               {chapterLogos.map((logo, index) => (<Image key={index} src={logo.src} alt="" height={300} width={300} className={`${logo == IeeeCsLogo ? 'scale-50 md:scale-[65%]' : 'scale-75 md:scale-90'}`} />))}
             </div>
@@ -91,7 +92,23 @@ const Home = () => {
           </div>
         </div>
 
-        <div className="w-[100%] md:w-[50%] h-160 md:h-screen flex items-center justify-center">
+        <div className="hidden fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 md:flex flex-col gap-10">
+          <div className="h-2 w-20 border-1 border-white bg-white/5"></div>
+          <div className="h-2 w-20 border-1 border-white bg-white/5"></div>
+          <div className="h-2 w-20 border-1 border-white bg-white/5"></div>
+          <div className="h-2 w-20 border-1 border-white bg-white/5"></div>
+          <div className="h-2 w-20 border-1 border-white bg-white/5"></div>
+          <div className="h-2 w-20 border-1 border-white bg-white/5"></div>
+          <div className="h-2 w-20 border-1 border-white bg-white/5"></div>
+          <div className="h-2 w-20 border-1 border-white bg-white/5"></div>
+          <div className="h-2 w-20 border-1 border-white bg-white/5"></div>
+          <div className="h-2 w-20 border-1 border-white bg-white/5"></div>
+          <div className="h-2 w-20 border-1 border-white bg-white/5"></div>
+          <div className="h-2 w-20 border-1 border-white bg-white/5"></div>
+          <div className="h-2 w-20 border-1 border-white bg-white/5"></div>
+        </div>
+
+        <div className="md:absolute md:right-16 w-[100%] md:w-[50%] h-160 md:h-screen flex items-center justify-center">
           <div className="relative flex flex-col bg-white/5 backdrop-blur-lg size-[95%] md:size-[80%]">
             <div className="absolute top-10 flex flex-col items-center justify-center text-center">
               <div className="text-2xl md:text-4xl font-semibold">IEEE Day 2025</div>
@@ -122,15 +139,15 @@ const Home = () => {
 
             <div className="absolute bottom-4 grid grid-cols-3 items-center justify-center w-full text-sm md:text-base">
               <div className="border-2 border-white/15 text-center h-24 flex flex-col items-center justify-center">
-                <div className="bg-white text-black px-2 py-1">Venue</div>
+                <button className="bg-white text-black px-4 py-2 hover:scale-95 transition-transform duration-300">Pre-event Quiz</button>
                 <div className="mt-1">NSBM Green University</div>
               </div>
               <div className="border-2 border-white/15 text-center h-24 flex flex-col items-center justify-center">
-                <div className="bg-white text-black px-2 py-1">Date</div>
+                <button className="bg-white text-black px-4 py-2 hover:scale-95 transition-transform duration-300">Pre-event Quiz</button>
                 <div className="mt-1">7th October</div>
               </div>
               <div className="border-2 border-white/15 text-center h-24 flex flex-col items-center justify-center">
-                <div className="bg-white text-black px-2 py-1">Time</div>
+                <button className="bg-white text-black px-4 py-2 hover:scale-95 transition-transform duration-300">Pre-event Quiz</button>
                 <div className="mt-1">9:30 AM</div>
               </div>
             </div>
