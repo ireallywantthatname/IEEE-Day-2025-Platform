@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import { useRouter } from "next/navigation";
 import Image, { StaticImageData } from "next/image";
 import { UserType } from "@/types";
 import GirlAvatar from "../../../public/girl-avatar.png"
@@ -39,92 +40,107 @@ const Home = () => {
         setShownChapterLogo(chapterLogos[nextIndex]);
         return nextIndex;
       });
-    }, 2000);
+    }, 1500);
 
     return () => clearInterval(interval);
   }, []);
 
   const outerLogoRef = useRef<HTMLImageElement>(null);
 
+  const router = useRouter();
+
   useGSAP(() => {
     gsap.from(
       outerLogoRef.current,
       {
-        rotate: 720,
-        duration: 10,
+        rotate: 360,
+        duration: 4,
         repeat: -1,
-        ease: "power3.out",
+        ease: "none",
       });
   }, []);
 
-  return (
-    <div className="flex flex-col md:flex-row">
-      <div className="w-[100%] md:w-[50%] h-screen flex items-center justify-center">
-
-        <div className="relative flex flex-col bg-white/5 backdrop-blur-lg size-[80%]">
-          <div className="absolute inset-x-0 top-4 md:top-10 text-center">
-            <div className="text-2xl md:text-4xl">Time Traveler&apos;s</div>
-            <div className="text-5xl md:text-7xl font-bold">Passport</div>
-          </div>
-          <Image src={IeeeDayLogoOuter} ref={outerLogoRef} alt="" width={400} height={400} className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 scale-75 md:scale-[85%] 2xl:scale-100" />
-          <Image src={IeeeDayLogoInner} alt="" width={200} height={200} className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 scale-[60%] md:scale-90 2xl:scale-100" />
-          <div className="hidden absolute inset-x-0 bottom-0 md:grid md:grid-cols-3 items-center md:mx-10">
-            {chapterLogos.map((logo, index) => (<Image key={index} src={logo.src} alt="" height={300} width={300} className={`${logo == IeeeCsLogo ? 'scale-50 md:scale-[65%]' : 'scale-75 md:scale-90'} `} />))}
-          </div>
-          <div className="block md:hidden absolute left-1/2 -translate-x-1/2 bottom-0">
-            <Image src={shownChapterLogo} alt="" width={400} height={400} />
-          </div>
-
+  if (userData == null) {
+    return (
+      <div className="relative z-50 flex flex-col items-center justify-center h-screen">
+        <div className="bg-white/5 backdrop-blur-lg px-12 md:px-24 py-6 md:py-12">
+          <button className="bg-white text-black px-4 py-2 hover:scale-95 transition-transform duration-300" onClick={() => router.push("/")}>Sign In</button>
         </div>
       </div>
+    )
+  }
+  else {
+    return (
+      <div className="relative z-50 flex flex-col md:flex-row">
+        <div className="w-[100%] md:w-[50%] h-160 md:h-screen flex items-center justify-center">
 
-      <div className="w-[100%] md:w-[50%] h-screen flex items-center justify-center">
-        <div className="relative flex flex-col bg-white/5 backdrop-blur-lg size-[80%]">
-          <div className="absolute top-10 flex flex-col items-center justify-center text-center">
-            <div className="text-2xl md:text-4xl font-semibold">IEEE Day 2025</div>
-            <div className="px-4 md:px-20 mt-2 md:mt-4">A global celebration of technology and innovation, connecting minds, sharing ideas, and shaping the future.</div>
+          <div className="relative flex flex-col bg-white/5 backdrop-blur-lg size-[95%] md:size-[80%]">
+            <div className="absolute inset-x-0 top-4 md:top-10 text-center">
+              <div className="text-2xl md:text-4xl">Time Traveler&apos;s</div>
+              <div className="text-5xl md:text-7xl font-bold">Passport</div>
+            </div>
+            <Image src={IeeeDayLogoOuter} ref={outerLogoRef} alt="" width={400} height={400} className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 scale-75 md:scale-[85%] 2xl:scale-100" />
+            <Image src={IeeeDayLogoInner} alt="" width={200} height={200} className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 scale-[70%] md:scale-90 2xl:scale-100" />
+            <div className="hidden absolute inset-x-0 bottom-0 md:grid md:grid-cols-3 items-center md:mx-10">
+              {chapterLogos.map((logo, index) => (<Image key={index} src={logo.src} alt="" height={300} width={300} className={`${logo == IeeeCsLogo ? 'scale-50 md:scale-[65%]' : 'scale-75 md:scale-90'}`} />))}
+            </div>
+            <div className="md:hidden absolute left-1/2 -translate-x-1/2 bottom-0 w-full flex items-center justify-center">
+              <Image src={shownChapterLogo} alt="" width={300} height={300} className={`${shownChapterLogo == IeeeCsLogo ? "scale-75" : "scale-100 mb-8"}`} />
+            </div>
+
           </div>
+        </div>
 
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center w-full gap-10 px-4 md:px-0">
-            <div className="hidden md:block">
-              {userData?.gender == "Female" && (<Image src={GirlAvatar} alt="" height={200} width={200} />)}
-              {userData?.gender == "Male" && (<Image src={BoyAvatar} alt="" height={200} width={200} />)}
+        <div className="w-[100%] md:w-[50%] h-160 md:h-screen flex items-center justify-center">
+          <div className="relative flex flex-col bg-white/5 backdrop-blur-lg size-[95%] md:size-[80%]">
+            <div className="absolute top-10 flex flex-col items-center justify-center text-center">
+              <div className="text-2xl md:text-4xl font-semibold">IEEE Day 2025</div>
+              <div className="px-4 md:px-20 mt-2 md:mt-4">A global celebration of technology and innovation, connecting minds, sharing ideas, and shaping the future.</div>
             </div>
-            <div className="text-sm md:text-base">
-              <div className="font-bold text-center mb-4">Hi, I am {userData?.full_name}</div>
-              <div className="flex gap-2">
-                <div className="font-semibold">Email: </div><div>{userData?.email}</div>
-              </div>
-              <div className="flex gap-2">
-                <div className="font-semibold">Phone: </div><div>{userData?.phone_number}</div>
-              </div>
-              <div className="flex gap-2">
-                <div className="font-semibold">University: </div><div>{userData?.university_name}</div>
-              </div>
-              <div className="flex gap-2">
-                <div className="font-semibold">Track Session: </div><div>{userData?.preferred_track_session_1}</div>
-              </div>
-            </div>
-          </div>
 
-          <div className="absolute bottom-4 grid grid-cols-3 items-center justify-center w-full text-sm md:text-base">
-            <div className="border-2 border-white/15 text-center h-24 flex flex-col items-center justify-center">
-              <div className="bg-white text-black px-2 py-1">Venue</div>
-              <div className="mt-1">NSBM Green University</div>
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center w-full gap-10 px-4 md:px-0">
+              <div className="hidden md:block">
+                {userData?.gender == "Female" && (<Image src={GirlAvatar} alt="" height={200} width={200} />)}
+                {userData?.gender == "Male" && (<Image src={BoyAvatar} alt="" height={200} width={200} />)}
+              </div>
+              <div className="text-sm md:text-base">
+                <div className="font-bold text-center mb-4">Hi, I am {userData?.full_name}</div>
+                <div className="flex gap-2">
+                  <div className="font-semibold">Email: </div><div>{userData?.email}</div>
+                </div>
+                <div className="flex gap-2">
+                  <div className="font-semibold">Phone: </div><div>{userData?.phone_number}</div>
+                </div>
+                <div className="flex gap-2">
+                  <div className="font-semibold">University: </div><div>{userData?.university_name}</div>
+                </div>
+                <div className="flex gap-2">
+                  <div className="font-semibold">Track Session: </div><div>{userData?.preferred_track_session_1}</div>
+                </div>
+              </div>
             </div>
-            <div className="border-2 border-white/15 text-center h-24 flex flex-col items-center justify-center">
-              <div className="bg-white text-black px-2 py-1">Date</div>
-              <div className="mt-1">7th October</div>
-            </div>
-            <div className="border-2 border-white/15 text-center h-24 flex flex-col items-center justify-center">
-              <div className="bg-white text-black px-2 py-1">Time</div>
-              <div className="mt-1">9:30 AM</div>
+
+            <div className="absolute bottom-4 grid grid-cols-3 items-center justify-center w-full text-sm md:text-base">
+              <div className="border-2 border-white/15 text-center h-24 flex flex-col items-center justify-center">
+                <div className="bg-white text-black px-2 py-1">Venue</div>
+                <div className="mt-1">NSBM Green University</div>
+              </div>
+              <div className="border-2 border-white/15 text-center h-24 flex flex-col items-center justify-center">
+                <div className="bg-white text-black px-2 py-1">Date</div>
+                <div className="mt-1">7th October</div>
+              </div>
+              <div className="border-2 border-white/15 text-center h-24 flex flex-col items-center justify-center">
+                <div className="bg-white text-black px-2 py-1">Time</div>
+                <div className="mt-1">9:30 AM</div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  );
+    );
+
+  }
+
 };
 
 export default Home;
