@@ -21,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${saira.className} font-secondary antialiased select-none bg-black text-white text-base 2xl:text-xl`}
+        className={`${saira.className} font-secondary antialiased select-none bg-black text-white text-base`}
       >
         <ParticlesBg />
         {children}

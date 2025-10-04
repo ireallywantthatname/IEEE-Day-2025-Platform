@@ -5,12 +5,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { SignInSchema, SignInType } from "@/types";
 import { readUser } from "@/actions/firebaseActions";
 import { useRouter } from "next/navigation";
-import { useRef, useEffect } from "react";
-import Image from "next/image";
-import gsap from "gsap";
-import IeeeDayLogoInner from "../../public/logos/ieee-day-logo-inner.svg";
-import IeeeDayLogoOuter from "../../public/logos/ieee-day-logo-outer.svg";
-
 
 const fields = [
     {
@@ -31,7 +25,7 @@ const Home = () => {
     const {
         register,
         handleSubmit,
-        formState: { errors, isValid },
+        formState: { errors },
     } = useForm<SignInType>({
         resolver: zodResolver(SignInSchema),
         mode: "onChange",
@@ -53,73 +47,32 @@ const Home = () => {
         router.push("/passport");
     };
 
-
-    const outerLogoRef = useRef<HTMLImageElement>(null);
-    const innerLogoRef = useRef<HTMLImageElement>(null);
-
-    useEffect(() => {
-
-        if (outerLogoRef.current) {
-            gsap.to(outerLogoRef.current, {
-                rotate: 360,
-                duration: 20,
-                ease: "linear",
-                repeat: -1,
-            });
-        }
-    }, []);
-
-
     return (
-        <div className="relative z-50 flex items-center justify-center h-screen">
-            <div className="flex flex-col md:flex-row items-center md:items-stretch w-full max-w-3xl">
-                <div className="flex items-center justify-center p-8 md:w-1/2">
-                    <div className="relative w-80 h-80 flex items-center justify-center" >
-                        <Image
-                            ref={outerLogoRef}
-                            src={IeeeDayLogoOuter}
-                            width={400}
-                            height={400}
-                            alt="IEEE Day Logo Outer"
-                            className="absolute"
+        <div className="relative z-50 flex flex-col bg-white/5 backdrop-blur-lg p-10 md:px-24 md:py-12">
+            <div className="text-2xl md:text-4xl font-semibold text-center mb-10">Sign In</div>
+            <form onSubmit={handleSubmit(onSubmit)}>
+                {fields.map((field, index) => (
+                    <div key={index} className="h-28 w-60">
+                        <div className="font-bold">{field.label}</div>
+                        <input
+                            {...register(field.name as keyof SignInType)}
+                            type={field.type}
+                            className="border border-white p-1 text-base w-full"
                         />
-                        <Image
-                            src={IeeeDayLogoInner}
-                            width={200}
-                            height={200}
-                            alt="IEEE Day Logo Inner"
-                            className="absolute"
-                        />
+                        <div className="text-red-500 text-sm">
+                            {errors[field.name as keyof SignInType]?.message}
+                        </div>
                     </div>
+                ))}
+                <div className="flex justify-center">
+                    <button
+                        type="submit"
+                        className="bg-white text-black px-4 py-2 hover:scale-95 transition-transform duration-300"
+                    >
+                        Sign In
+                    </button>
                 </div>
-
-
-                <div className="p-8 md:w-1/2" >
-                    <h2 className="font-primary text-center text-xl font-bold mb-6">Sign In</h2>
-
-                    <form onSubmit={handleSubmit(onSubmit)} className="font-secondary">
-                        {fields.map((field, index) => (
-                            <div key={index} className="h-28">
-                                <div className="font-bold">{field.label}</div>
-                                <input
-                                    {...register(field.name as keyof SignInType)}
-                                    type={field.type}
-                                    className="border border-white p-1 text-base w-full"
-                                />
-                                <div className="text-red-500 text-sm">
-                                    {errors[field.name as keyof SignInType]?.message}
-                                </div>
-                            </div>
-                        ))}
-                        <button
-                            type="submit"
-                            className="bg-white text-black px-4 py-2 w-full mt-4 hover:scale-95 transition-transform duration-300"
-                        >
-                            Sign In
-                        </button>
-                    </form>
-                </div>
-            </div>
+            </form>
         </div>
     );
 };
