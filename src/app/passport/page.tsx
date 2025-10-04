@@ -74,7 +74,7 @@ const Home = () => {
 
           <div className="relative flex flex-col bg-white/5 backdrop-blur-lg size-full">
             <div className="absolute inset-x-0 top-8 md:top-10 text-center">
-              <div className="text-5xl md:text-6xl font-bold">Passport</div>
+              <div className="text-5xl md:text-6xl font-bold bg-white text-black py-4 md:py-6">Passport</div>
             </div>
             <Image src={IeeeDayLogoOuter} ref={outerLogoRef} alt="" width={400} height={400} className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 scale-75 md:scale-[80%] 2xl:scale-90" />
             <Image src={IeeeDayLogoInner} alt="" width={200} height={200} className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 scale-[70%] md:scale-90 2xl:scale-90" />

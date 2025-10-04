@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Saira } from 'next/font/google';
 import "./globals.css";
 import ParticlesBg from "@/components/ParticlesBg";
+import Navbar from "@/components/Navbar";
 
 const saira = Saira({
   subsets: ['latin'],
@@ -23,6 +24,7 @@ export default function RootLayout({
       <body
         className={`${saira.className} font-secondary antialiased select-none bg-black text-white text-base`}
       >
+        <Navbar />
         <ParticlesBg />
         {children}
       </body>
