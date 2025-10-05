@@ -86,6 +86,9 @@ const Home = () => {
                         {isFetching ? ". . ." : "Sign In"}
                     </button>
                 </div>
+                <div className="flex justify-center mt-4">
+                    <a className="underline" href="https://ieeeday.ieeensbm.org/#register">Don&apos;t have an account?</a>
+                </div>
             </form>
         </div>
     );

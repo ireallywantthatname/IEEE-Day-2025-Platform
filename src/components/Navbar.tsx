@@ -23,14 +23,14 @@ const Navbar = () => {
                     <Link
                         key={index}
                         href={item.href}
-                        className={`${pathname === item.href && "font-bold"} ${item.label === 'Register' && "bg-white text-black px-3 py-2"} text-2xl m-auto hover:scale-110 transition-all duration-300`}
+                        className={`${pathname === item.href && "font-bold"} ${item.label === 'Register' && "bg-white text-black px-3 py-2"} text-xl m-auto hover:scale-110 transition-all duration-300`}
                     >
                         {item.label}
                     </Link>
                 ))}
             </div>
             <div
-                className={`block sm:block md:hidden fixed z-100 h-10 bg-white/5 backdrop-blur-lg transition-all duration-500 text-white ${isExpanded ? "h-screen w-screen" : "w-10 top-2 left-2"}`}
+                className={`block sm:block md:hidden fixed z-100 h-10 bg-white/5 backdrop-blur-lg transition-all duration-500 text-white ${isExpanded ? "h-screen w-screen" : "w-10 top-4 left-4"}`}
                 onClick={() => setIsExpanded(!isExpanded)}
             >
                 <svg className={`${isExpanded ? "hidden" : "block"} p-1 m-auto`} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M3 4H21V6H3V4ZM3 11H21V13H3V11ZM3 18H21V20H3V18Z"></path></svg>
